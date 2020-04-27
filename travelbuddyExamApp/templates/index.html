@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Registration Page</title>
+    <style>
+        .registration, .login{
+            display:inline-block;
+            vertical-align: top;
+        }
+        
+        /* .welcome {
+            color: blue;
+        } */
+    </style>
+</head>
+<body>
+    <h1 class="welcome">Welcome!</h1>
+    {% if messages %}
+            {% for message in messages%}
+            <p>{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    <div class="container">
+        <div class = registration>
+            <h1>Registration</h1>
+            <form action="/registration/processing" method="POST" id="registration_form">
+                {% csrf_token %}
+                <p>Name</p>
+                <input type="text" name="name" id="name">
+                <p>Username</p>
+                <input type="text" name="username" id="username">
+                <p>Password</p>
+                <input type="password" name="password" id="password">
+                <p>Confirm Password</p>
+                <input type="password" name="conf_password" id="conf_password">
+                <input type="submit" value="Register">
+            </form>
+        </div>
+
+        <div class = login>
+            <h1>Login</h1>
+            <form action = '/login/processing' method="POST">
+                {% csrf_token %}
+                <p>Username</p>
+                <input type="text" name="username" id="username_login">
+                <p>Password</p>
+                <input type="password" name="password" id="password_login">
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

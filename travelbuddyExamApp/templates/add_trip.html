@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a Trip page!</title>
+    <style>
+        .logout {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <body>
+        <div class="logout">
+        <a href="/home">Home</a> | <a href="/logout">Logout</a>
+        </div>
+        <div class="add">
+            <h2>Add a Trip</h2>
+            <form action="/trip/processing" method="POST">
+                {% csrf_token %}
+                <label for="destination">Desination: </label>
+                <input type="text" name="destination"><br>
+                <label for="description">Description: </label>
+                <input type="text" name="description"><br>
+                <label for="dateFrom">Travel Date From: </label>
+                <input type="date" name="dateFrom"><br>
+                <label for="dateTo">Travel Date To: </label>
+                <input type="date" name="dateTo">
+                <input type="hidden" name="userid" value="{{request.session.user_id}}">
+                <input type="submit" value="Add">
+            </form>
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li>{{message}}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+</body>
+</html>
